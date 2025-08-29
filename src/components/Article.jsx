@@ -1,26 +1,39 @@
 import { useState } from "react";
+import { FaHeart, FaComment } from "react-icons/fa";
 
 const Article = ({ articles }) => {
+  // Extend your articles with isLiked: false
+  const [articleList, setArticleList] = useState(
+    articles.map((a) => ({ ...a, isLiked: false }))
+  );
+
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
-  // Calculate indexes
+  // Pagination calculations
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articles.slice(
+  const currentArticles = articleList.slice(
     indexOfFirstArticle,
     indexOfLastArticle
   );
 
-  // Total pages
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  const totalPages = Math.ceil(articleList.length / articlesPerPage);
+
+  // Toggle like for one article only
+  const handleLike = (id) => {
+    setArticleList((prev) =>
+      prev.map((article) =>
+        article.id === id ? { ...article, isLiked: !article.isLiked } : article
+      )
+    );
+  };
 
   // Handle direct page click
   const handleClick = (event) => {
     setCurrentPage(Number(event.target.id));
   };
 
-  // Handle next/prev
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
@@ -30,7 +43,7 @@ const Article = ({ articles }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col justify-center items-center gap-6">
       {/* Render Articles */}
       {currentArticles.map((article) => (
         <div
@@ -43,12 +56,22 @@ const Article = ({ articles }) => {
               alt={article.title}
               className="rounded-lg w-full object-cover"
             />
-            <div className="absolute bottom-0 left-0 p-2 bg-black bg-opacity-50 rounded-bl-lg">
+
+            {/* Heart + Comment */}
+            <div className="absolute w-full bottom-0 left-0 p-2 flex items-center justify-between">
+              <button onClick={() => handleLike(article.id)}>
+                <FaHeart
+                  className={`w-6 h-6 ${
+                    article.isLiked=== true ? "text-red-600" : "text-gray-400"
+                  }`}
+                />
+              </button>
               <button>
-                <i className="fa-heart text-white"></i>
+                <FaComment className="text-purple-700 w-6 h-6" />
               </button>
             </div>
           </div>
+
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <p>{article.author}</p>
             <p>{article.date}</p>
@@ -60,14 +83,12 @@ const Article = ({ articles }) => {
             <button className="text-sm bg-purple-700 text-white rounded-full px-4 py-2">
               Read more
             </button>
-            <i className="fa-comment"></i>
           </div>
         </div>
       ))}
 
       {/* Pagination Controls */}
       <div className="flex justify-center gap-2 mt-4">
-        {/* Prev button */}
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
@@ -80,7 +101,6 @@ const Article = ({ articles }) => {
           Prev
         </button>
 
-        {/* Page numbers */}
         {[...Array(totalPages).keys()].map((number) => (
           <button
             key={number}
@@ -88,15 +108,14 @@ const Article = ({ articles }) => {
             onClick={handleClick}
             className={`px-4 py-2 rounded-full ${
               currentPage === number + 1
-                ? "bg-purple-900 text-white"
-                : "bg-purple-700 text-white"
+                ? "bg-purple-950 text-white"
+                : "bg-purple-500 text-white"
             }`}
           >
             {number + 1}
           </button>
         ))}
 
-        {/* Next button */}
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}

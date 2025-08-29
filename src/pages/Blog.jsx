@@ -33,6 +33,7 @@ const slideData = [
 
 const articleData = [];
 for (let i = 0; i < 10; i++) {
+  const id = i + 1;
   const image = i % 3 === 0 ? blog1 : i % 3 === 1 ? blog2 : blog3;
   const date = `August ${30 - i}, 2025`;
   const heading = `Vegetable ${i + 1} is good for your ${
@@ -44,7 +45,7 @@ for (let i = 0; i < 10; i++) {
     i % 3 === 0 ? "Jane Doe" : i % 3 === 1 ? "John Smith" : "Alex Johnson";
   const views = 0;
   const link = "#";
-  articleData.push({ image, date, heading, explanation, author, views, link });
+  articleData.push({ id, image, date, heading, explanation, author, views, link });
 }
 
 function Blog() {
