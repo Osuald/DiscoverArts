@@ -34,7 +34,7 @@ const Slider = ({ slides }) => {
             <img
               src={slide.image}
               alt={slide.heading}
-              className="w-full h-96 object-cover  rounded-lg"
+              className="w-full h-96 object-cover rounded-lg"
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-700 to-pink-500 bg-clip-text bg-opacity-50 hover:bg-opacity-70 transition-opacity rounded-b-lg p-4 text-transparent">
               <p className="text-sm">{slide.date}</p>

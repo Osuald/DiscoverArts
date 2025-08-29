@@ -11,31 +11,41 @@ const slideData = [
   {
     image: blog1,
     date: "August 28, 2025",
-    heading: "Eating one Carrot a day can bring you Surprising Results",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    heading: "New Study Shows Surprising Results",
     author: "Jane Doe",
-    views: 0,
     link: "#",
   },
   {
     image: blog2,
     date: "August 27, 2025",
-    heading: "Tomatoes are good fruits for your skin, and vision",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    heading: "The Future of Web Development",
     author: "John Smith",
-    views: 0,
     link: "#",
   },
   {
     image: blog3,
     date: "August 26, 2025",
-    heading: "Eating cabbages can help you lose weight",
-    explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    heading: "Mastering React and Tailwind",
     author: "Alex Johnson",
-    views: 0,
     link: "#",
   },
 ];
+
+const articleData = [];
+for (let i = 0; i < 10; i++) {
+  const image = i % 3 === 0 ? blog1 : i % 3 === 1 ? blog2 : blog3;
+  const date = `August ${30 - i}, 2025`;
+  const heading = `Vegetable ${i + 1} is good for your ${
+    i % 2 === 0 ? "health" : "beauty"
+  }`;
+  const explanation =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+  const author =
+    i % 3 === 0 ? "Jane Doe" : i % 3 === 1 ? "John Smith" : "Alex Johnson";
+  const views = 0;
+  const link = "#";
+  articleData.push({ image, date, heading, explanation, author, views, link });
+}
 
 function Blog() {
   const [index, setIndex] = useState(0);
@@ -66,7 +76,7 @@ function Blog() {
       </div>
       <div className="bg-gray-100 m-20 flex flex-col justify-center">
         <div>
-          <h2 className="text-xl font-bold" >Featured Posts</h2>
+          <h2 className="text-xl font-bold">Featured Posts</h2>
           <h2 className="text-sm">Discover our most popular articles</h2>
         </div>
         <div className="w-full mt-4 bg-gradient-to-r from-black-700 to-black-300 rounded-xl shadow-lg">
@@ -80,7 +90,7 @@ function Blog() {
             <h2 className="text-sm">Discover our newest Articles</h2>
           </div>
           <div>
-            <Article article={slideData[0]} />
+            <Article articles={articleData} />
           </div>
         </div>
       </div>
