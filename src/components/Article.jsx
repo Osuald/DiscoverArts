@@ -1,33 +1,20 @@
 import { useState } from "react";
 import { FaHeart, FaComment } from "react-icons/fa";
 
-const Article = ({ articles }) => {
-  // Extend your articles with isLiked: false
-  const [articleList, setArticleList] = useState(
-    articles.map((a) => ({ ...a, isLiked: false }))
-  );
-
+// CORRECTED: Article component now receives articles and onLike as props
+const Article = ({ articles, onLike }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
-  // Pagination calculations
+  // Pagination calculations remain the same
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
-  const currentArticles = articleList.slice(
+  const currentArticles = articles.slice(
     indexOfFirstArticle,
     indexOfLastArticle
   );
 
-  const totalPages = Math.ceil(articleList.length / articlesPerPage);
-
-  // Toggle like for one article only
-  const handleLike = (id) => {
-    setArticleList((prev) =>
-      prev.map((article) =>
-        article.id === id ? { ...article, isLiked: !article.isLiked } : article
-      )
-    );
-  };
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
 
   // Handle direct page click
   const handleClick = (event) => {
@@ -59,10 +46,11 @@ const Article = ({ articles }) => {
 
             {/* Heart + Comment */}
             <div className="absolute w-full bottom-0 left-0 p-2 flex items-center justify-between">
-              <button onClick={() => handleLike(article.id)}>
+              {/* CORRECTED: Call the onLike prop */}
+              <button onClick={() => onLike(article.id)}>
                 <FaHeart
                   className={`w-6 h-6 ${
-                    article.isLiked=== true ? "text-red-600" : "text-gray-400"
+                    article.isLiked ? "text-red-600" : "text-gray-400"
                   }`}
                 />
               </button>

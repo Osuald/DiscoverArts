@@ -1,11 +1,11 @@
 import Slider from "../components/Slider";
+import Article from "../components/Article";
+import { useState, useEffect } from "react";
 
+// Import your images
 import blog1 from "../assets/images/blog1.jpg";
 import blog2 from "../assets/images/blog2.jpg";
 import blog3 from "../assets/images/blog3.jpg";
-
-import { useState, useEffect } from "react";
-import Article from "../components/Article";
 
 const slideData = [
   {
@@ -31,7 +31,8 @@ const slideData = [
   },
 ];
 
-const articleData = [];
+// Define the static article data
+const initialArticleData = [];
 for (let i = 0; i < 10; i++) {
   const id = i + 1;
   const image = i % 3 === 0 ? blog1 : i % 3 === 1 ? blog2 : blog3;
@@ -45,11 +46,25 @@ for (let i = 0; i < 10; i++) {
     i % 3 === 0 ? "Jane Doe" : i % 3 === 1 ? "John Smith" : "Alex Johnson";
   const views = 0;
   const link = "#";
-  articleData.push({ id, image, date, heading, explanation, author, views, link });
+  initialArticleData.push({
+    id,
+    image,
+    date,
+    heading,
+    explanation,
+    author,
+    views,
+    link,
+  });
 }
 
 function Blog() {
   const [index, setIndex] = useState(0);
+
+  // CORRECTED: State for articles is now managed here
+  const [articleList, setArticleList] = useState(
+    initialArticleData.map((a) => ({ ...a, isLiked: false }))
+  );
 
   useEffect(() => {
     const intervalId = setInterval(
@@ -58,6 +73,15 @@ function Blog() {
     );
     return () => clearInterval(intervalId);
   }, []);
+
+  // CORRECTED: The handleLike function lives here
+  const handleLike = (id) => {
+    setArticleList((prev) =>
+      prev.map((article) =>
+        article.id === id ? { ...article, isLiked: !article.isLiked } : article
+      )
+    );
+  };
 
   return (
     <div>
@@ -91,7 +115,8 @@ function Blog() {
             <h2 className="text-sm">Discover our newest Articles</h2>
           </div>
           <div>
-            <Article articles={articleData} />
+            {/* CORRECTED: Pass the articles and the like handler to the Article component */}
+            <Article articles={articleList} onLike={handleLike} />
           </div>
         </div>
       </div>
