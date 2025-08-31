@@ -36,9 +36,9 @@ const Slider = ({ slides }) => {
               alt={slide.heading}
               className="w-full h-96 object-cover rounded-lg"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-purple-700 to-pink-500 bg-clip-text bg-opacity-50 hover:bg-opacity-70 transition-opacity rounded-b-lg p-4 text-transparent">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-pink-700 to-purple-950 bg-clip-text bg-opacity-90 rounded-b-lg p-4 text-transparent">
               <p className="text-sm">{slide.date}</p>
-              <h3 className="text-lg font-semibold mt-1">{slide.heading}</h3>
+              <h3 className="text-lg font-bold mt-1">{slide.heading}</h3>
               <p className="text-sm ">By {slide.author}</p>
               <a
                 href={slide.link}
@@ -54,13 +54,13 @@ const Slider = ({ slides }) => {
       {/* Navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 p-1 rounded-full bg-purple-500 bg-opacity-50 hover:bg-purple-300 transition-colors"
       >
         &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 rounded-full bg-white bg-opacity-50 hover:bg-opacity-75 transition-colors"
+        className="absolute top-1/2 right-4  p-1 rounded-full bg-purple-500 bg-opacity-50 hover:bg-purple-300 "
       >
         &#10095;
       </button>

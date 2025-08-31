@@ -84,9 +84,9 @@ function Blog() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col justify-center bg-gradient-to-r from-purple-300 via-white to-purple-400">
       <div className="px-20 mt-15 flex items-center justify-center bg-gradient-to-r from-purple-900 to-purple-700">
-        <div className="flex flex-col items-center gap-2 p-4 mx-auto w-1/2">
+        <div className="flex flex-col items-center gap-2 p-4 mx-auto w-1/2 text-grey">
           <h2 className="w-fit py-1 px-2 text-center rounded-full border border-gray-400">
             Latest Articles
           </h2>
@@ -99,25 +99,23 @@ function Blog() {
           </p>
         </div>
       </div>
-      <div className="bg-gray-100 m-20 flex flex-col justify-center">
+      <div className="w-200  mx-50 mt-10 flex-1 flex-col justify-center">
         <div>
           <h2 className="text-xl font-bold">Featured Posts</h2>
           <h2 className="text-sm">Discover our most popular articles</h2>
         </div>
-        <div className="w-full mt-4 bg-gradient-to-r from-black-700 to-black-300 rounded-xl shadow-lg">
+        <div className="w-full mt-4 bg-gradient-to-r from-black-700 to-black-300 rounded-xl shadow-sm">
           <Slider slides={slideData} currentIndex={index} />
         </div>
       </div>
-      <div className="m-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="m-10 flex flex-col justify-center">
         <div>
-          <div>
-            <h2 className="text-xl font-bold">Latest Articles</h2>
-            <h2 className="text-sm">Discover our newest Articles</h2>
-          </div>
-          <div>
-            {/* CORRECTED: Pass the articles and the like handler to the Article component */}
-            <Article articles={articleList} onLike={handleLike} />
-          </div>
+          <h2 className="text-xl font-bold">Latest Articles</h2>
+          <h2 className="text-sm">Discover our newest Articles</h2>
+        </div>
+        <div className="mt-4">
+          {/* CORRECTED: Pass the articles and the like handler to the Article component */}
+          <Article articles={articleList} onLike={handleLike} />
         </div>
       </div>
     </div>

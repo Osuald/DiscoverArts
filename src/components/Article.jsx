@@ -30,18 +30,18 @@ const Article = ({ articles, onLike }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6">
+    <div className="grid grid-cols-3 grid-rows-2 items-center gap-6">
       {/* Render Articles */}
       {currentArticles.map((article) => (
         <div
           key={article.id}
-          className="flex flex-col gap-4 border p-4 rounded-lg shadow"
+          className="flex flex-col gap-4 border p-4 rounded-lg shadow w-70 h-70"
         >
           <div className="relative">
             <img
               src={article.image}
               alt={article.title}
-              className="rounded-lg w-full object-cover"
+              className="rounded-lg w-full object-cover h-40 cursor-pointer"
             />
 
             {/* Heart + Comment */}
@@ -49,13 +49,13 @@ const Article = ({ articles, onLike }) => {
               {/* CORRECTED: Call the onLike prop */}
               <button onClick={() => onLike(article.id)}>
                 <FaHeart
-                  className={`w-6 h-6 ${
+                  className={`w-4 h-4 cursor-pointer ${
                     article.isLiked ? "text-red-600" : "text-gray-400"
                   }`}
                 />
               </button>
               <button>
-                <FaComment className="text-purple-700 w-6 h-6" />
+                <FaComment className="text-gray-400 w-4 h-4" />
               </button>
             </div>
           </div>
@@ -64,11 +64,9 @@ const Article = ({ articles, onLike }) => {
             <p>{article.author}</p>
             <p>{article.date}</p>
           </div>
-          <h3 className="text-lg font-bold">{article.title}</h3>
-          <p className="text-sm text-gray-600">{article.description}</p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-between">
             <p className="text-sm text-gray-600">{article.views} views</p>
-            <button className="text-sm bg-purple-700 text-white rounded-full px-4 py-2">
+            <button className="text-sm bg-purple-700 text-white rounded-full px-2 py-1 cursor-pointer hover:bg-purple-400">
               Read more
             </button>
           </div>
