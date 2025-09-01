@@ -55,7 +55,7 @@ const Article = ({ articles, onLike }) => {
                 />
               </button>
               <button>
-                <FaComment className="text-gray-400 w-4 h-4" />
+                <FaComment className="text-gray-400 w-4 h-4 cursor-pointer" />
               </button>
             </div>
           </div>

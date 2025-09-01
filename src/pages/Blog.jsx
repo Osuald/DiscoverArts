@@ -33,7 +33,7 @@ const slideData = [
 
 // Define the static article data
 const initialArticleData = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 8; i++) {
   const id = i + 1;
   const image = i % 3 === 0 ? blog1 : i % 3 === 1 ? blog2 : blog3;
   const date = `August ${30 - i}, 2025`;
@@ -71,10 +71,9 @@ function Blog() {
       () => setIndex((i) => (i + 1) % slideData.length),
       5000
     );
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); 
   }, []);
-
-  // CORRECTED: The handleLike function lives here
+  // The handleLike function is defined here and passed down to Article
   const handleLike = (id) => {
     setArticleList((prev) =>
       prev.map((article) =>
@@ -123,34 +122,23 @@ function Blog() {
           {/* Articles right panel */}
           <div className="flex flex-col gap-4 mt-20">
             <div>
-              <ul>
-                <h2 className="text-lg font-bold">Categories</h2>
-                <li className="mb-2">
-                  <a href="#" className="hover:text-purple-700">
-                    All Posts
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="hover:text-purple-700">
-                    Design
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="hover:text-purple-700">
-                    Development
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="hover:text-purple-700">
-                    Business
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a href="#" className="hover:text-purple-700">
-                    Lifestyle
-                  </a>
-                </li>
-              </ul>
+              <h2 className="text-lg font-bold">Categories</h2>
+              {[
+                "All Posts",
+                "Design",
+                "Development",
+                "Business",
+                "Lifestyle",
+              ].map((category, index) => (
+                
+                <a
+                  key={index}
+                  href="#"
+                  className="hover:underline flex flex-col mr-2"
+                >
+                  {category}
+                </a>
+              ))}
             </div>
             <div>
               <h2 className="text-lg font-bold">Popular Posts</h2>
@@ -167,7 +155,7 @@ function Blog() {
             </div>
 
             <h2 className="text-lg font-bold">Tags</h2>
-            <div  className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-4">
               {[
                 "All Posts",
                 "Design",
