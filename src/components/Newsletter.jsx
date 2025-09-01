@@ -1,6 +1,6 @@
 function Newsletter() {
   return (
-    <div className="w-full h-50 bg-gradient-to-r from-purple-700 to-pink-500 p-8 flex flex-col justify-center items-center text-center text-white mt-20">
+    <div className="w-full h-50 bg-gradient-to-r from-purple-700 to-pink-500 p-8 flex flex-col justify-center items-center text-center text-white">
       <h2 className="text-2xl font-bold mb-4">Subscribe to our Newsletter</h2>
       <p className="mb-6">
         Get the latest arts trends, news, and new products delivered straight to

@@ -108,15 +108,80 @@ function Blog() {
           <Slider slides={slideData} currentIndex={index} />
         </div>
       </div>
-      <div className="m-10 flex flex-col justify-center">
-        <div>
-          <h2 className="text-xl font-bold">Latest Articles</h2>
-          <h2 className="text-sm">Discover our newest Articles</h2>
+      <div className="flex mx-30 items-center gap-10 ">
+        <div className="m-10 flex flex-col justify-center">
+          <div>
+            <h2 className="text-xl font-bold">Latest Articles</h2>
+            <h2 className="text-sm">Discover our newest Articles</h2>
+          </div>
+          <div className="mt-4">
+            {/* CORRECTED: Pass the articles and the like handler to the Article component */}
+            <Article articles={articleList} onLike={handleLike} />
+          </div>
         </div>
-        <div className="mt-4">
-          {/* CORRECTED: Pass the articles and the like handler to the Article component */}
-          <Article articles={articleList} onLike={handleLike} />
-        </div>
+        <section>
+          {/* Articles right panel */}
+          <div className="flex flex-col gap-4 mt-20">
+            <div>
+              <ul>
+                <h2 className="text-lg font-bold">Categories</h2>
+                <li className="mb-2">
+                  <a href="#" className="hover:text-purple-700">
+                    All Posts
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a href="#" className="hover:text-purple-700">
+                    Design
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a href="#" className="hover:text-purple-700">
+                    Development
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a href="#" className="hover:text-purple-700">
+                    Business
+                  </a>
+                </li>
+                <li className="mb-2">
+                  <a href="#" className="hover:text-purple-700">
+                    Lifestyle
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold">Popular Posts</h2>
+              {initialArticleData.map((article) => (
+                <div key={article.id} className="flex gap-2 mt-2">
+                  <img
+                    src={article.image}
+                    alt={article.heading}
+                    className="w-16 h-16 object-cover rounded-lg"
+                  />
+                  <h3 className="text-sm">{article.heading}</h3>
+                </div>
+              ))}
+            </div>
+
+            <h2 className="text-lg font-bold">Tags</h2>
+            <div  className="flex flex-wrap gap-2 mb-4">
+              {[
+                "All Posts",
+                "Design",
+                "Development",
+                "Business",
+                "Lifestyle",
+              ].map((tag) => (
+                <a key={tag} href="#" className="hover:underline inline-block">
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

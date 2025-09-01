@@ -30,7 +30,7 @@ const Article = ({ articles, onLike }) => {
   };
 
   return (
-    <div className="grid grid-cols-3 grid-rows-2 items-center gap-6">
+    <div className="grid grid-cols-2 grid-rows-2 items-center gap-6">
       {/* Render Articles */}
       {currentArticles.map((article) => (
         <div
