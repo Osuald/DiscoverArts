@@ -41,7 +41,7 @@ const Article = ({ articles, onLike }) => {
             <img
               src={article.image}
               alt={article.title}
-              className="rounded-lg w-full object-cover h-40 cursor-pointer"
+              className="rounded-lg  w-full object-cover h-40 cursor-pointer"
             />
 
             {/* Heart + Comment */}

@@ -4,6 +4,7 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import Blog from "./pages/Blog";
 import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -49,6 +50,7 @@ function App() {
           <Blog />
           <Newsletter />
           <Footer />
+          <AdminDashboard />
         </div>
       )}
     </div>
