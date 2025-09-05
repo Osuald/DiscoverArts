@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({
   email,
@@ -8,6 +9,16 @@ const Login = ({
   setPassword,
   handleLogin,
 }) => {
+  const navigate = useNavigate();
+
+  const checkAdmin = () => {
+    if (email === "kai@gmail.com" && password === "kai") {
+      navigate("/admin-dashboard", { replace: true });
+    } else {
+      navigate("/", { replace: true });
+    }
+  };
+
   return (
     <div className="flex items-center bg-gradient-to-r from-purple-500 to-pink-300 justify-center h-screen">
       <form
@@ -39,6 +50,7 @@ const Login = ({
         <button
           type="submit"
           className="cursor-pointer w-full bg-gradient-to-r from-purple-600 to-pink-400 text-white p-2 rounded-md hover:bg-gradient-to-r hover:from-purple-800 hover:to-pink-600 transition"
+          onClick={checkAdmin}
         >
           Login
         </button>
@@ -46,9 +58,13 @@ const Login = ({
         <h1 className="text-md font-semibold mt-6 text-center">
           New to DiscoverArts?
           <span>
-            <a className="bg-gradient-to-r from-purple-600 to-pink-400 bg-clip-text text-transparent cursor-pointer ml-2 hover:bg-gradient-to-r hover:from-purple-800 hover:to-pink-600">
+            {/* The Link components are already correct! */}
+            <Link
+              to="/register"
+              className="bg-gradient-to-r from-purple-600 to-pink-400 bg-clip-text text-transparent cursor-pointer ml-2 hover:bg-gradient-to-r hover:from-purple-800 hover:to-pink-600"
+            >
               Register
-            </a>
+            </Link>
           </span>
         </h1>
       </form>

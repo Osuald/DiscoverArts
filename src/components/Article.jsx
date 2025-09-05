@@ -35,7 +35,7 @@ const Article = ({ articles, onLike }) => {
       {currentArticles.map((article) => (
         <div
           key={article.id}
-          className="flex flex-col gap-4 border p-4 rounded-lg shadow w-70 h-70"
+          className="flex flex-col gap-4 border bg-gradient-to-r from-purple-300 via-white to-purple-400 p-4 rounded-lg shadow-lg w-70 h-70"
         >
           <div className="relative">
             <img
