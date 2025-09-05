@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import axios from "axios";
 const Login = ({
   email,
   password,
@@ -11,12 +11,28 @@ const Login = ({
 }) => {
   const navigate = useNavigate();
 
-  const checkAdmin = () => {
-    if (email === "kai@gmail.com" && password === "kai") {
-      navigate("/admin-dashboard", { replace: true });
-    } else {
-      navigate("/", { replace: true });
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://127.0.0.1:3001/login", {
+        email,
+        password,
+      })
+      .then((result) => {
+        // This block runs ONLY if the request was successful (2xx status code)
+        console.log(result);
+        if (result.data === "Success") {
+          if (email === "kai@gmail.com") {
+            navigate("/admin-dashboard", { replace: true });
+          } else {
+            navigate("/", { replace: true });
+            setEmail("");
+            setPassword("");
+          }
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -50,7 +66,7 @@ const Login = ({
         <button
           type="submit"
           className="cursor-pointer w-full bg-gradient-to-r from-purple-600 to-pink-400 text-white p-2 rounded-md hover:bg-gradient-to-r hover:from-purple-800 hover:to-pink-600 transition"
-          onClick={checkAdmin}
+          onClick={handleSubmit}
         >
           Login
         </button>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -28,16 +29,46 @@ function Register() {
       return;
     }
 
-    // You would typically send this data to an API for real registration
-    console.log("Registration data:", {
-      username,
-      email,
-      phoneNumber,
-      password,
-    });
-
-    // Simulate successful registration
-    setIsRegistered(true);
+    // Send data to the API and handle the response
+    axios
+      .post("http://127.0.0.1:3001/register", {
+        username,
+        email,
+        phoneNumber,
+        password,
+      })
+      .then((response) => {
+        // This block runs ONLY if the request was successful (2xx status code)
+        console.log("Registration successful!", response.data);
+        setIsRegistered(true);
+        // You could also navigate to another page here, e.g., navigate('/login')
+      })
+      .catch((error) => {
+        // This block runs if the request fails (e.g., 404, 500 status code)
+        console.error("Registration failed:", error);
+        // Set a user-friendly error message based on the error
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          if (error.response.status === 404) {
+            setError(
+              "API endpoint not found. Please check the backend server."
+            );
+          } else {
+            setError(
+              `Registration failed: ${
+                error.response.data.message || "An unknown error occurred."
+              }`
+            );
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          setError("No response from the server. Is the backend running?");
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          setError("An unexpected error occurred.");
+        }
+      });
   };
 
   if (isRegistered) {

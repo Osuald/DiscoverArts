@@ -223,12 +223,13 @@ const AdminDashboard = () => {
           </div>
         )}
 
+
         {activeTab === "stats" && (
           <div>
             {/* Stats Section */}
             <div className="grid grid-cols-3 gap-6 mb-10">
               <div className="bg-white p-6 rounded-xl shadow flex items-center gap-4">
-                <FaEye className="text-purple-600 text-2xl" />
+                <FaEye className="text-purple-600 text-2xl" /> 
                 <div>
                   <p className="text-gray-600">Total Views</p>
                   <h2 className="text-xl font-semibold">
