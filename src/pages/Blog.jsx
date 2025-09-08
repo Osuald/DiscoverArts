@@ -33,7 +33,7 @@ const slideData = [
 
 // Define the static article data
 const initialArticleData = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 40; i++) {
   const id = i + 1;
   const image = i % 3 === 0 ? blog1 : i % 3 === 1 ? blog2 : blog3;
   const date = `August ${30 - i}, 2025`;
@@ -71,7 +71,7 @@ function Blog() {
       () => setIndex((i) => (i + 1) % slideData.length),
       5000
     );
-    return () => clearInterval(intervalId); 
+    return () => clearInterval(intervalId);
   }, []);
   // The handleLike function is defined here and passed down to Article
   const handleLike = (id) => {
@@ -107,20 +107,25 @@ function Blog() {
           <Slider slides={slideData} currentIndex={index} />
         </div>
       </div>
-      <div className="flex mx-30 items-center gap-10 ">
-        <div className="m-10 flex flex-col justify-center">
+      <div className="flex m-10 items-start ">
+        <div className="mt-10 flex-1 flex flex-col justify-center">
           <div>
             <h2 className="text-xl font-bold">Latest Articles</h2>
             <h2 className="text-sm">Discover our newest Articles</h2>
           </div>
           <div className="mt-4">
-            {/* CORRECTED: Pass the articles and the like handler to the Article component */}
             <Article articles={articleList} onLike={handleLike} />
           </div>
         </div>
-        <section>
-          {/* Articles right panel */}
-          <div className="flex flex-col gap-4 mt-20">
+
+        {/*
+          This is the section that has been updated.
+          I've added the `sticky` and `top-20` classes to the <section> element.
+          This will make the right panel stick to the top of the viewport
+          once the user scrolls past its initial position.
+        */}
+        <div className="sticky top-2">
+          <div className="flex flex-col gap-4 mt-20 bg-gradient-to-r from purple-200 to-purple-300 p-4 rounded-lg shadow-md w-80">
             <div>
               <h2 className="text-lg font-bold">Categories</h2>
               {[
@@ -130,7 +135,6 @@ function Blog() {
                 "Business",
                 "Lifestyle",
               ].map((category, index) => (
-                
                 <a
                   key={index}
                   href="#"
@@ -142,7 +146,7 @@ function Blog() {
             </div>
             <div>
               <h2 className="text-lg font-bold">Popular Posts</h2>
-              {initialArticleData.map((article) => (
+              {slideData.map((article) => (
                 <div key={article.id} className="flex gap-2 mt-2">
                   <img
                     src={article.image}
@@ -153,7 +157,6 @@ function Blog() {
                 </div>
               ))}
             </div>
-
             <h2 className="text-lg font-bold">Tags</h2>
             <div className="flex flex-wrap gap-2 mb-4">
               {[
@@ -169,7 +172,7 @@ function Blog() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );

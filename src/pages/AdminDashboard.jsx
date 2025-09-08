@@ -107,9 +107,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gradient-to-r from-purple-400 via-white to-purple-300 flex">
       {/* Sidebar */}
       <div className="w-64 bg-transparent p-6 rounded-xl border-r border-gray-300 shadow-xl">
-        <h1 className="text-3xl font-bold  mb-6">
-          Admin Dashboard
-        </h1>
+        <h1 className="text-3xl font-bold  mb-6">Admin Dashboard</h1>
         <ul className="space-y-2">
           <li
             className={`flex items-center gap-4 p-2 rounded-lg ${
@@ -223,13 +221,12 @@ const AdminDashboard = () => {
           </div>
         )}
 
-
         {activeTab === "stats" && (
           <div>
             {/* Stats Section */}
             <div className="grid grid-cols-3 gap-6 mb-10">
               <div className="bg-white p-6 rounded-xl shadow flex items-center gap-4">
-                <FaEye className="text-purple-600 text-2xl" /> 
+                <FaEye className="text-purple-600 text-2xl" />
                 <div>
                   <p className="text-gray-600">Total Views</p>
                   <h2 className="text-xl font-semibold">

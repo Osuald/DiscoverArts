@@ -32,7 +32,10 @@ const Login = ({
           }
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log("Connection to the server failed", error);
+        alert("Please connect the server");
+      });
   };
 
   return (
