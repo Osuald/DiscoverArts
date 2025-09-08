@@ -103,7 +103,7 @@ function Blog() {
           <h2 className="text-xl font-bold">Featured Posts</h2>
           <h2 className="text-sm">Discover our most popular articles</h2>
         </div>
-        <div className="w-full mt-4 bg-gradient-to-r from-black-700 to-black-300 rounded-xl shadow-sm">
+        <div className="w-full mt-4  rounded-xl shadow-sm">
           <Slider slides={slideData} currentIndex={index} />
         </div>
       </div>

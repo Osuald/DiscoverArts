@@ -22,7 +22,7 @@ const Slider = ({ slides }) => {
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  return (
+  return ( 
     <div className="relative w-full h-80 overflow-hidden rounded-lg">
       {/* Track */}
       <div
