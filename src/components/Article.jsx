@@ -4,7 +4,7 @@ import { FaHeart, FaComment } from "react-icons/fa";
 // CORRECTED: Article component now receives articles and onLike as props
 const Article = ({ articles, onLike }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 20;
+  const articlesPerPage = 21;
 
   // Pagination calculations remain the same
   const indexOfLastArticle = currentPage * articlesPerPage;
@@ -36,17 +36,17 @@ const Article = ({ articles, onLike }) => {
         {currentArticles.map((article) => (
           <div
             key={article.id}
-            className="flex flex-col gap-3 border bg-gradient-to-r from-purple-300 via-white to-purple-400 p-4 rounded-lg shadow-lg w-60 h-65 overflow-hidden"
+            className="flex flex-col gap-3 cursor-pointer   p-4 rounded-lg w-60 h-65 overflow-hidden hover:scale-105 transition duration-300 ease-in-out hover:border-b-4 hover:border-purple-500 transition duration-300"
           >
             <div className="relative">
               <img
                 src={article.image}
                 alt={article.title}
-                className="rounded-lg  w-full object-cover h-40 cursor-pointer"
+                className=" w-full object-cover h-40 cursor-pointer"
               />
 
               {/* Heart + Comment */}
-              <div className="absolute w-full bottom-0 left-0 p-2 flex items-center justify-between">
+              <div className="absolute w-full bottom-0 p-2 flex justify-between">
                 {/* Calling the onLike prop */}
                 <button onClick={() => onLike(article.id)}>
                   <FaHeart
@@ -68,7 +68,7 @@ const Article = ({ articles, onLike }) => {
             <div className="flex flex-wrap items-center gap-2 justify-between">
               <p className="text-sm text-gray-600">{article.views} views</p>
               <button className="text-sm bg-purple-700 text-white rounded-full px-2 py-1 cursor-pointer hover:bg-purple-400">
-                Read more
+                Read more &rarr;
               </button>
             </div>
           </div>

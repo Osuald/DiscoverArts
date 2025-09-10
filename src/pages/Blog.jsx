@@ -83,7 +83,7 @@ function Blog() {
   };
 
   return (
-    <div className="flex flex-col justify-center bg-gradient-to-r from-purple-300 via-white to-purple-400">
+    <div className="flex flex-col justify-center bg-white">
       <div className="px-20 mt-15 flex items-center justify-center bg-gradient-to-r from-purple-900 to-purple-700">
         <div className="flex flex-col items-center gap-2 p-4 mx-auto w-1/2 text-grey">
           <h2 className="w-fit py-1 px-2 text-center rounded-full border border-gray-400">
